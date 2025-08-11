@@ -104,9 +104,53 @@ export default function Index() {
         {/* Layer 2: Content overlay */}
         <div className="relative z-10 max-w-[1200px] mx-auto px-6 h-full flex items-center pointer-events-none">
           <h1 className="sr-only">TechSociety</h1>
+          {/* Mobile overlays */}
+          <div className="md:hidden absolute inset-0 pointer-events-none">
+            {/* Mobile tagline top-right */}
+            <div className="absolute top-24 right-6 text-right space-y-1">
+              <p className="text-xl font-semibold text-foreground">Build Together.</p>
+              <p className="text-xl font-semibold text-foreground">Learn Faster.</p>
+              <p className="text-xl font-semibold text-foreground">Ship More.</p>
+            </div>
+
+            {/* Mobile headline center */}
+            <div className="absolute left-1/2 -translate-x-1/2 top-1/3 -translate-y-1/2 text-center select-none">
+              <div className="relative">
+                <span aria-hidden className="absolute inset-0 block font-extrabold tracking-tight leading-[0.9] text-foreground text-[clamp(56px,22vw,96px)] -tracking-[0.02em] blur-sm opacity-50">Tech</span>
+                <span aria-hidden className="relative block font-extrabold tracking-tight leading-[0.9] text-foreground text-[clamp(56px,22vw,96px)] -tracking-[0.02em] [text-shadow:2px_2px_0_white,-2px_-2px_0_white,2px_-2px_0_white,-2px_2px_0_white] [-webkit-text-stroke:2px_white]">Tech</span>
+                <span aria-hidden className="absolute inset-0 block font-extrabold tracking-tight leading-[0.9] text-white text-[clamp(56px,22vw,96px)] -tracking-[0.02em] mix-blend-mode-difference [text-shadow:2px_2px_0_white,-2px_-2px_0_white,2px_-2px_0_white,-2px_2px_0_white] [-webkit-text-stroke:2px_white]">Tech</span>
+              </div>
+              <div className="relative mt-2">
+                <span aria-hidden className="absolute inset-0 block font-extrabold tracking-tight leading-[0.9] text-foreground text-[clamp(56px,22vw,96px)] -tracking-[0.02em] blur-sm opacity-50">Society</span>
+                <span aria-hidden className="relative block font-extrabold tracking-tight leading-[0.9] text-foreground text-[clamp(56px,22vw,96px)] -tracking-[0.02em] [text-shadow:2px_2px_0_white,-2px_-2px_0_white,2px_-2px_0_white,-2px_2px_0_white] [-webkit-text-stroke:2px_white]">Society</span>
+                <span aria-hidden className="absolute inset-0 block font-extrabold tracking-tight leading-[0.9] text-white text-[clamp(56px,22vw,96px)] -tracking-[0.02em] mix-blend-mode-difference [text-shadow:2px_2px_0_white,-2px_-2px_0_white,2px_-2px_0_white,-2px_2px_0_white] [-webkit-text-stroke:2px_white]">Society</span>
+              </div>
+            </div>
+
+            {/* Mobile CTAs bottom-left */}
+            <div className="absolute left-6 bottom-40 flex flex-col items-start gap-3 pointer-events-auto">
+              <Button asChild><a href="/register">Join TechSociety</a></Button>
+              <Button asChild variant="outline"><a href="/events">Explore Events</a></Button>
+              <Button asChild variant="outline"><a href="/projects">See Projects</a></Button>
+              <div className="mt-1">
+                <div className="pointer-events-none select-none px-2.5 py-1 rounded-full border bg-card/80 text-[11px] text-muted-foreground shadow-sm">Drag to explore</div>
+              </div>
+            </div>
+
+            {/* Mobile counters bottom-right */}
+            <div className="absolute right-6 bottom-6 flex items-center gap-2 pointer-events-auto">
+              {stats.map((s) => (
+                <div key={s.label} className="px-3 py-2 rounded-full border bg-card/80">
+                  <div className="text-2xl font-extrabold leading-none">{s.value ?? '—'}</div>
+                  <div className="text-xs text-muted-foreground mt-0.5">{s.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
             {/* Left rail — CTAs + Tech */}
-            <aside className="md:col-span-1 flex flex-col justify-between pointer-events-auto md:pl-[12%]">
+            <aside className="hidden md:col-span-1 md:flex flex-col justify-between pointer-events-auto md:pl-[12%]">
               <div className="flex flex-col items-start gap-3">
                 <Button asChild><a href="/register">Join TechSociety</a></Button>
                 <Button asChild variant="outline"><a href="/events">Explore Events</a></Button>
@@ -133,7 +177,7 @@ export default function Index() {
             </section>
 
             {/* Right rail — Society + Copy + Live Counters */}
-            <aside className="md:col-span-1 flex flex-col justify-between text-right gap-6">
+            <aside className="hidden md:col-span-1 md:flex flex-col justify-between text-right gap-6">
               <div className="space-y-1 pt-4 pr-4">
                 <p className="text-xl font-semibold text-foreground">Build Together.</p>
                 <p className="text-xl font-semibold text-foreground">Learn Faster.</p>
