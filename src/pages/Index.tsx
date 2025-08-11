@@ -70,6 +70,12 @@ export default function Index() {
     })();
     return () => { active = false };
   }, []);
+  
+  const stats = [
+    {label:'Projects', value: projectsCount}, 
+    {label:'Events', value: eventsCount}, 
+    {label:'Members', value: membersCount}
+  ];
 
   return (
     <main>
@@ -128,7 +134,7 @@ export default function Index() {
 
             {/* Right rail — Society + Copy + Live Counters */}
             <aside className="md:col-span-1 flex flex-col justify-between text-right gap-6">
-              <div className="space-y-1">
+              <div className="space-y-1 pt-4 pr-4">
                 <p className="text-xl font-semibold text-foreground">Build Together.</p>
                 <p className="text-xl font-semibold text-foreground">Learn Faster.</p>
                 <p className="text-xl font-semibold text-foreground">Ship More.</p>
@@ -144,14 +150,31 @@ export default function Index() {
                     <span aria-hidden className="absolute inset-0 block font-extrabold tracking-tight leading-[0.9] text-white text-[clamp(64px,12vw,160px)] -tracking-[0.02em] mix-blend-mode-difference [text-shadow:2px_2px_0_white,-2px_-2px_0_white,2px_-2px_0_white,-2px_2px_0_white] [-webkit-text-stroke:2px_white]">Society</span>
                   </div>
                 </div>
-                <div className="flex flex-wrap items-center justify-end gap-2">
-                  {[{label:'Projects', value: projectsCount}, {label:'Events', value: eventsCount}, {label:'Members', value: membersCount}].map(s => (
-                    <div key={s.label} className="px-3 py-2 rounded-full border bg-card/80">
-                      <div className="text-2xl font-extrabold leading-none">{s.value ?? '—'}</div>
-                      <div className="text-xs text-muted-foreground mt-0.5">{s.label}</div>
+                {/* --- MODIFICATION START --- */}
+                {/* Re-structured counters for triangular layout */}
+                <div className="flex flex-col items-end gap-2 pointer-events-auto">
+                  {stats[0] && (
+                    <div key={stats[0].label} className="px-3 py-2 rounded-full border bg-card/80">
+                      <div className="text-2xl font-extrabold leading-none">{stats[0].value ?? '—'}</div>
+                      <div className="text-xs text-muted-foreground mt-0.5">{stats[0].label}</div>
                     </div>
-                  ))}
+                  )}
+                  <div className="flex items-center justify-end gap-2">
+                    {stats[1] && (
+                       <div key={stats[1].label} className="px-3 py-2 rounded-full border bg-card/80">
+                        <div className="text-2xl font-extrabold leading-none">{stats[1].value ?? '—'}</div>
+                        <div className="text-xs text-muted-foreground mt-0.5">{stats[1].label}</div>
+                      </div>
+                    )}
+                    {stats[2] && (
+                      <div key={stats[2].label} className="px-3 py-2 rounded-full border bg-card/80">
+                        <div className="text-2xl font-extrabold leading-none">{stats[2].value ?? '—'}</div>
+                        <div className="text-xs text-muted-foreground mt-0.5">{stats[2].label}</div>
+                      </div>
+                    )}
+                  </div>
                 </div>
+                {/* --- MODIFICATION END --- */}
               </div>
             </aside>
           </div>
